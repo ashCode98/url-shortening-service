@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "main": "server.js",
-  "scripts": { 
+  "scripts": {
     "dev": "node server/server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["url", "backend", "url-shortening-service"],
+  "author": "codingashish.dev",
   "type": "module",
   "license": "ISC",
   "description": "",
