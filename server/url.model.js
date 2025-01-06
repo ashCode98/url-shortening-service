@@ -1,15 +1,11 @@
 import mongoose, { Schema } from "mongoose";
 
-const urlSchema = new Schema({
+const urlSchema = new mongoose.Schema({
     originalURL: {
         type: String,
-        required: true,
-        trim: true
     },
     shortURL: {
         type: String,
-        required: true,
-        trim: true
     }
 }, { timestamps: true })
 

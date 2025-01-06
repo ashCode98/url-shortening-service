@@ -13,6 +13,6 @@ async function connectDB() {
     }
 }
 
-connectDB();
+// connectDB();
 
-// export default connectDB;
+export default connectDB;
