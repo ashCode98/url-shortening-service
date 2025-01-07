@@ -7,7 +7,7 @@ btn.addEventListener('click', async (e) => {
     const url = originalURL.value;
 
     try {
-        const response = await fetch('http://localhost:3000/shorten', {
+        const response = await fetch('http://shortest.url/shorten', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'

@@ -38,17 +38,30 @@ function generateUniquekey() {
 
 //API Route
 app.post('/shorten', async (req, res) => {
-    const { url } = req.body;
-    const shortURL = generateUniquekey();
-
     try {
-        const newUrl = new Url({ originalURL: url, shortURL })
-        await newUrl.save();
+        const { url } = req.body;
+        if (!url) {
+            res.status(400).json({ Error: "URL is required" })
+        }
+        const shortURL = generateUniquekey();
+        const updateShortUrl = await Url.findOneAndUpdate(req.body.shortURL,
+            {
+                originalURL: url
+            },
+            { new: true }
+        )
 
-        const shortenedUrl = `http://localhost:3000/${shortURL}`;
+        if (!updateShortUrl) {
+            const newUrl = new Url({ originalURL: url, shortURL })
+            await newUrl.save();
+        }
+
+        const shortenedUrl = `${process.env.BASE_URL}${shortURL}`;
         res.status(201).json({ shortenedUrl });
     } catch (error) {
-        res.status(500).json({ error: "Failed to save URL" });
+        res.status(500).json({
+            Error: "Internal server error",
+        })
     }
 })
 
