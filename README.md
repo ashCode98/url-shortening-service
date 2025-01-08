@@ -1,4 +1,3 @@
-```markdown
 # URL Shortener
 
 A simple URL shortening service built with Node.js, Express, and MongoDB.
@@ -52,4 +51,3 @@ A simple URL shortening service built with Node.js, Express, and MongoDB.
 ## Project Details
 
 https://roadmap.sh/projects/url-shortening-service
-```
