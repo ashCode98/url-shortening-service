@@ -7,7 +7,7 @@ btn.addEventListener('click', async (e) => {
     const url = originalURL.value;
 
     try {
-        const response = await fetch('https://url-shortening-service-3bfx.onrender.com/shorten', {
+        const response = await fetch('https://url-shortening-service-3bfx.onrender.com/shorten/', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
