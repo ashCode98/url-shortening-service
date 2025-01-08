@@ -45,30 +45,34 @@ function generateUniquekey() {
 app.post('/shorten', async (req, res) => {
     try {
         const { url } = req.body;
+
         if (!url) {
-            res.status(400).json({ Error: "URL is required" })
+            return res.status(400).json({ Error: "URL is required" });
         }
-        const shortURL = generateUniquekey();
-        const updateShortUrl = await Url.findOneAndUpdate(req.body.shortURL,
-            {
-                originalURL: url
-            },
-            { new: true }
-        )
 
-        if (!updateShortUrl) {
-            const newUrl = new Url({ originalURL: url, shortURL })
+        // Check if the URL already has a short URL
+        let urlData = await Url.findOne({ originalURL: url });
+
+        if (urlData) {
+            // URL already shortened
+            const shortenedUrl = `${process.env.BASE_URL}/${urlData.shortURL}`;
+            return res.status(200).json({ shortenedUrl });
+        } else {
+            // Generate a new unique short URL
+            const shortURL = generateUniquekey();
+
+            // Create and save the new URL document
+            const newUrl = new Url({ originalURL: url, shortURL });
             await newUrl.save();
-        }
 
-        const shortenedUrl = `${process.env.BASE_URL}/${shortURL}`;
-        res.status(201).json({ shortenedUrl });
+            const shortenedUrl = `${process.env.BASE_URL}/${shortURL}`;
+            return res.status(201).json({ shortenedUrl });
+        }
     } catch (error) {
-        res.status(500).json({
-            Error: "Internal server error",
-        })
+        console.error("Error in /shorten:", error);
+        return res.status(500).json({ Error: "Internal server error" });
     }
-})
+});
 
 app.get('/:shortURL', async (req, res) => {
     const shortURL = req.params.shortURL;
