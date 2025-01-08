@@ -45,34 +45,28 @@ function generateUniquekey() {
 app.post('/shorten', async (req, res) => {
     try {
         const { url } = req.body;
-
         if (!url) {
-            return res.status(400).json({ Error: "URL is required" });
+            res.status(400).json({ Error: "URL is required" })
         }
 
-        // Check if the URL already has a short URL
         let urlData = await Url.findOne({ originalURL: url });
-
         if (urlData) {
-            // URL already shortened
             const shortenedUrl = `${process.env.BASE_URL}/${urlData.shortURL}`;
-            return res.status(200).json({ shortenedUrl });
-        } else {
-            // Generate a new unique short URL
+            res.status(201).json({ shortenedUrl });
+        }
+        else {
             const shortURL = generateUniquekey();
-
-            // Create and save the new URL document
-            const newUrl = new Url({ originalURL: url, shortURL });
+            const newUrl = new Url({ originalURL: url, shortURL })
             await newUrl.save();
-
             const shortenedUrl = `${process.env.BASE_URL}/${shortURL}`;
-            return res.status(201).json({ shortenedUrl });
+            res.status(201).json({ shortenedUrl });
         }
     } catch (error) {
-        console.error("Error in /shorten:", error);
-        return res.status(500).json({ Error: "Internal server error" });
+        res.status(500).json({
+            Error: "Internal server error",
+        })
     }
-});
+})
 
 app.get('/:shortURL', async (req, res) => {
     const shortURL = req.params.shortURL;
