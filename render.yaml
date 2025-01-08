@@ -8,4 +8,4 @@ services:
       - key: MONGODB_URI
         value: your_mongodb_atlas_connection_string
       - key: BASE_URL
-        value: https://url-shortening-service.onrender.com/
+        value: https://url-shortening-service-3bfx.onrender.com
