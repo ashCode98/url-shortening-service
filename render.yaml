@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: url-shortening-service
+    env: node
+    buildCommand: npm install
+    startCommand: npm run dev
+    envVars:
+      - key: MONGODB_URI
+        value: your_mongodb_atlas_connection_string
+      - key: BASE_URL
+        value: https://url-shortening-service.onrender.com/

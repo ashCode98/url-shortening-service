@@ -4,13 +4,18 @@ import connectDB from "./db.js";
 import { Url } from "./url.model.js";
 import cors from "cors";
 import bodyParser from "body-parser";
+import path from 'path';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json())
+app.use(express.static(path.join(__dirname, '../client')));
 
 connectDB();
 
@@ -35,6 +40,10 @@ function generateUniquekey() {
 
     return uniqueKey;
 }
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'index.html'));
+});
 
 //API Route
 app.post('/shorten', async (req, res) => {
