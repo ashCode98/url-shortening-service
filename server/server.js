@@ -65,7 +65,7 @@ app.post('/shorten', async (req, res) => {
             await newUrl.save();
         }
 
-        const shortenedUrl = `${process.env.BASE_URL}${shortURL}`;
+        const shortenedUrl = `${process.env.BASE_URL}/${shortURL}`;
         res.status(201).json({ shortenedUrl });
     } catch (error) {
         res.status(500).json({
