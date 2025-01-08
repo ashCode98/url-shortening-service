@@ -74,20 +74,19 @@ app.get('/:shortURL', async (req, res) => {
     const shortURL = req.params.shortURL;
 
     try {
-        const urlData = await Url.findOne({ shortURL })
+        const urlData = await Url.findOne({ shortURL: shortURL });
 
         if (urlData) {
             return res.redirect(urlData.originalURL);
-        }
-        else {
-            return res.status(400).send('404 not found');
+        } else {
+            return res.status(404).send('404 not found');
         }
     } catch (error) {
         return res.status(500).send('Server Error');
     }
-})
+});
 
-app.get('*', (req, res) => {
+app.get('*', (_, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'index.html'));
 });
 
