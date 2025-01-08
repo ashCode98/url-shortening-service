@@ -20,7 +20,7 @@ btn.addEventListener('click', async (e) => {
 
         const div = document.createElement('div');
         div.className = 'shortened-url';
-        div.innerHTML = `Here is your shortened URL: <a href="${originalURL}">${shortenedUrl}</a>`;
+        div.innerHTML = `Here is your shortened URL: <a href="${shortenedUrl}">${shortenedUrl}</a>`;
 
         content.appendChild(div);
     } catch (error) {
