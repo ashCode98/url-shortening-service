@@ -1,41 +1,55 @@
-# URL Shortening Service
+```markdown
+# URL Shortener
 
-A simple web application that converts long URLs into shorter, more manageable links. Built with Node.js, Express, and MongoDB.
+A simple URL shortening service built with Node.js, Express, and MongoDB.
 
-## Setup
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/url-shortening-service.git
-cd url-shortening-service
-```
+## Features
 
-2. Install dependencies:
-```bash
-npm install
-```
+- Shorten long URLs for easy sharing
+- Redirect short URLs to original URLs
+- User-friendly interface
 
-3. Create a `.env` file in the root directory with your MongoDB connection string:
-```
-MONGODB_URI=your_mongodb_connection_string
-```
+## Installation
 
-4. Start the development server:
-```bash
-npm run dev
-```
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/yourusername/url-shortening-service.git
+    ```
+
+2. **Navigate to the project directory:**
+    ```bash
+    cd url-shortening-service
+    ```
+
+3. **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+4. **Create a `.env` file in the root directory and add the following:**
+    ```
+    MONGODB_URI=your_mongodb_atlas_connection_string
+    BASE_URL=https://url-shortening-service-3bfx.onrender.com
+    ```
+
+5. **Start the server:**
+    ```bash
+    npm run dev
+    ```
 
 ## Usage
-1. Open your browser and navigate to `http://localhost:3000`
-2. Enter a long URL in the input field
-3. Click "Shorten" to generate a short URL
-4. Copy and share the shortened URL
+
+- Open `http://localhost:3000` in your browser.
+- Enter the URL you want to shorten and click "Shorten URL".
+- The shortened URL will be displayed for sharing.
 
 ## Technologies Used
-- Node.js
-- Express.js
-- MongoDB
-- HTML/CSS
-- JavaScript
 
-See project details at:
-[https://roadmap.sh/projects/url-shortening-service](https://roadmap.sh/projects/url-shortening-service)
+- **Backend:** Node.js, Express, MongoDB, Mongoose
+- **Frontend:** HTML, CSS, JavaScript
+- **Deployment:** Render
+
+## Project Details
+
+https://roadmap.sh/projects/url-shortening-service
+```
