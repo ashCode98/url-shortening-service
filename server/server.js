@@ -41,10 +41,6 @@ function generateUniquekey() {
     return uniqueKey;
 }
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'index.html'));
-});
-
 //API Route
 app.post('/shorten', async (req, res) => {
     try {
@@ -90,6 +86,10 @@ app.get('/:shortURL', async (req, res) => {
         return res.status(500).send('Server Error');
     }
 })
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'index.html'));
+});
 
 app.listen(port, () => {
     console.log(`Listening to port ${port}`);
